@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Displays bad luck for the 4th loop iteration
+#+ Displays good luck for the 8th loop iteration and Best School for the other iterations
+# You must use the while loop and the if, elif and else statements
+
+LIMIT=1
+while [ $LIMIT -lt 11 ]
+do
+    if [ $LIMIT -eq 4 ]
+    then
+        echo "bad luck"
+    elif [ $LIMIT -eq 8 ]
+    then
+        echo "good luck"
+    else
+        echo "Best School"
+    fi
+    LIMIT=$(( LIMIT + 1 ))
+done
