@@ -6,6 +6,7 @@
 LIMIT=1
 while [ $LIMIT -lt 21 ]
 do
+    echo $LIMIT
     case $LIMIT in
 
         4)
@@ -21,7 +22,7 @@ do
         ;;
 
         *)
-        echo $LIMIT
+
     esac
     LIMIT=$(( LIMIT + 1 ))
 done
