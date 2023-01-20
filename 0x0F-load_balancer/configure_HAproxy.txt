@@ -1,0 +1,13 @@
+to configure the HAproxy file:
+
+log into the server you've installed it in (ubuntu@)
+sudo vi etc/haproxy/haproxy.cfg
+frontend {arbitrary_name_of_front_end}
+    bind *:80
+    stats uri /haproxy?stats
+    default_backend {arbitrary_name_of_back_end}
+
+backend {arbitrary_name_of_back_end}
+    balance     roundrobin
+    server  {server1_name}   {server1_IP} check
+    server  {server2_name}   {server2_IP} check

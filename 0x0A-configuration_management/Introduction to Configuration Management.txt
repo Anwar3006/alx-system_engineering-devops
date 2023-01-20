@@ -1,0 +1,57 @@
+What is Configuration Management
+Configuration Management is a way of handling changes in a system thus to maintain and improve it's integrity over time
+
+Automation plays an essential role in server configuration management. It’s the mechanism used to make the server reach a desirable state, previously defined by provisioning scripts using a tool’s specific language and features. Automation is, in fact, the heart of configuration management for servers, and that’s why it’s common to also refer to configuration management tools as Automation Tools or IT Automation Tools.
+
+There are a number of configuration management tools available in the market. Puppet, Ansible, Chef and Salt are popular choices. Although each tool will have its own characteristics and work in slightly different ways, they are all driven by the same purpose: to make sure the system’s state matches the state described by your provisioning scripts.
+
+Using Puppet
+package { 'vim':
+    ensure = 'installed'  ###to install vim on the servers
+}
+
+exec { 'brew update':
+    command = '/usr/bin/brew update'   ###to update brew on the servers
+}
+-------------------------------------------------------------------------
+##Writing Manifests 
+    ###Working with Variables
+    The example below defines a string variable that is later used inside a resource:
+    $package_to_install = "vim"
+    package { $package_to_install:
+        ensure = 'installed'
+    }
+
+    ###Using Loops
+    $package_to_install = ["vim", "git", "curl"]
+    package { $package_to_install:
+        ensure = 'installed'
+    }
+            OR 
+    This option gives you more flexibility for looping through resource definitions:
+    $package_to_install.each | String package_to_install| {
+        package { $package_to_install:
+            ensure = 'installed'
+        }
+    }
+
+    ###Using Conditionals
+    Let’s say you want to execute a command based on a fact. In this case, as you want to test the value of a variable, you need to use one of the conditional structures supported, like if/else:
+    if $osfamily != 'Debian' {
+        warning('This manifest is not supported on this OS')
+    }
+    else {
+        notify{'Good to go': }
+    }
+
+    Another common situation is when you want to condition the execution of a command based on the output from another command. For cases like this you can use onlyif or unless, like in the example below. This command will only be executed when the output from /bin/which php is successful, that is, the command exits with status 0:
+    exec { "Test":
+        command => "/bin/echo PHP is installed here > /tmp/test.txt",
+        onlyif => "/bin/which php"
+    }
+
+    Similarly, unless will execute the command all times, except when the command under unless exits successfully:
+    exec { "Test":
+        command => "/bin/echo PHP is NOT installed here > /tmp/test.txt",
+        unless => "/bin/which php"
+    }
