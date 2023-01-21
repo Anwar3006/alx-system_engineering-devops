@@ -4,8 +4,19 @@
 #+    Returns a page containing "Holberton School" when queried
 #++    at the root with a curl GET request.
 
-apt-get upgrade
-apt install -y nginx
-ufw allow 'Nginx HTTP'
+sudo apt-get update
+sudo apt-get install -y nginx
+
+sudo ufw allow 'Nginx HTTP'
+
+sudo mkdir /etc/var/www/html
+sudo touch /etc/var/www/html/index.html
 echo "Hello World!" > /var/www/html/index.html
-service nginx restart
+
+printf %s "server {
+    listen     80 default_server;
+    listen     [::]:80 default_server;
+    root       /etc/var/www/html;
+}" > /etc/nginx/sites-available/default
+
+sudo service nginx restart
