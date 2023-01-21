@@ -6,14 +6,14 @@
 # Configures /redirect_me as a "301 Moved Permanently".
 # Includes a custom 404 page containing "Ceci n'est pas une page".
 
-apt-get update
-apt-get install -y nginx
+sudo apt-get update
+sudo apt-get install -y nginx
 
-mkdir /etc/nginx/html
-touch /etc/nginx/html/index.html
-echo "Holberton School" > /etc/nginx/html/index.html
-touch /etc/nginx/html/404.html
-echo "Ceci n'est pas une page" > /etc/nginx/html/404.html
+sudo mkdir /etc/nginx/html
+sudo touch /etc/nginx/html/index.html
+echo "Holberton School" |sudo tee /etc/nginx/html/index.html
+sudo touch /etc/nginx/html/404.html
+echo "Ceci n'est pas une page" |sudo tee /etc/nginx/html/404.html
 
 printf %s "server {
     listen 80;
@@ -30,4 +30,4 @@ printf %s "server {
     }
 }" > /etc/nginx/sites-available/default
 
-service nginx restart
+sudo service nginx restart
