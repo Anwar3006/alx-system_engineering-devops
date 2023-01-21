@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 
+# Bash script that configures a server to run Nginx listening on port 80
 
 #  List all processes listening on port 80
 sudo lsof -i tcp:80
