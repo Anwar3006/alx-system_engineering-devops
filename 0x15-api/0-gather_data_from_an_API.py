@@ -8,8 +8,8 @@ import sys
 
 if __name__ == "__main__":
     """Making GET requests"""
-    req_name = requests.get('https://jsonplaceholder.typicode.com/users/'
-                            + sys.argv[1])
+    req_name = requests.get('https://jsonplaceholder.typicode.com/'
+                            'users/' + sys.argv[1])
     req_tasks = requests.get('https://jsonplaceholder.typicode.com/'
                              'todos?userId=' + sys.argv[1])
 
