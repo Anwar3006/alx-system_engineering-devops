@@ -10,8 +10,8 @@ if __name__ == "__main__":
     """Making GET requests"""
     req_name = requests.get('https://jsonplaceholder.typicode.com/users/'
                             + sys.argv[1])
-    req_tasks = requests.get('https://jsonplaceholder.typicode.com/todos?userId='
-                            + sys.argv[1])
+    req_tasks = requests.get('https://jsonplaceholder.typicode.com/'
+                             'todos?userId=' + sys.argv[1])
 
     res_name = req_name.json()['name']
     tasks = req_tasks.json()
@@ -28,9 +28,8 @@ if __name__ == "__main__":
         else:
             total_tasks += 1
 
-
     print("Employee {} is done with tasks"
-        " ({}/{}):".format(res_name, completed_tasks, total_tasks))
+          " ({}/{}):".format(res_name, completed_tasks, total_tasks))
 
     for task_done in completed_tasks_list:
         print("\t {}".format(task_done["title"]))
