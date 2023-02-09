@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-"""Extend your Python script to export data in the CSV format
-Format must be: "USER_ID","USERNAME","TASK_COMPLETED_STATUS","TASK_TITLE"
-File name must be: USER_ID.csv
-"""
+"""Exports to-do list information for a given employee ID to CSV format."""
 import csv
 import requests
 import sys
